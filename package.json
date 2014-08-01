@@ -1,0 +1,25 @@
+{
+  "name": "restify-cookies",
+  "version": "0.0.0",
+  "description": "Adds cookie parsing/setting to restify",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nathschmidt/restify-cookies"
+  },
+  "keywords": [
+    "restify",
+    "cookies",
+    "cookie"
+  ],
+  "author": "Nathan Schmidt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nathschmidt/restify-cookies/issues"
+  },
+  "homepage": "https://github.com/nathschmidt/restify-cookies",
+  "dependencies": {}
+}
