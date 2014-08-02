@@ -3,23 +3,50 @@ var cookieSign = require('cookie-signature');
 
 function CookieParser(){}
 
+	/**
+	 * Parse function to be handed to restify server.use
+	 * 
+	 * @param  {object}   req
+	 * @param  {object}   res 
+	 * @param  {Function} next
+	 * @return {undefined}
+	 */
 	CookieParser.prototype.parse = function (req, res, next){
 		var self = this;
 		var cookieHeader = req.headers.cookie;
 
 		req.cookies = cookie.parse(cookieHeader);
 
-		res.addCookie = function(key, val){
-			if(res.header('cookie')){
+		/**
+		 * Add a cookie to our response.  Uses a Set-Cookie header
+		 * per cookie added.
+		 * 
+		 * @param {String} key  - Cookie name
+		 * @param {String} val  - Cookie value
+		 * @param {[type]} opts - Options object can contain path, secure, 
+		 *     expires, domain, http
+		 */
+		res.addCookie = function(key, val, opts){
 
-				var curCookies = res.header('cookie');
-				curCookies = [curCookies, "; ", cookies.stringify(key, val)].join("; ");
-				res.header('cookie', curCookies);
+			var HEADER = "Set-Cookie";
+			if(res.header(HEADER)){
+
+				var curCookies = res.header(HEADER);
+
+				if(!curCookies instanceof Array){
+					curCookies = [curCookies];
+				}
+				
+				curCookies.push( cookies.serialize(key, val, opts) );
+
+				res.header(HEADER, curCookies);
 
 			} else {
 
-				res.header('cookie', cookie.stringify(key,val));
+				res.header(HEADER, cookie.serialize(key,val, opts));
 
 			}
 		};
 	};
+
+module.exports = CookieParser;
