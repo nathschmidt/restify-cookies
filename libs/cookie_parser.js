@@ -48,4 +48,4 @@ function CookieParser(){}
 		};
 	};
 
-module.exports = CookieParser;
+module.exports = new CookieParser();
