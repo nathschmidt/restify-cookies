@@ -46,6 +46,8 @@ function CookieParser(){}
 
 			}
 		};
+
+		next();
 	};
 
 module.exports = new CookieParser();
