@@ -1,11 +1,10 @@
 var cookie = require('cookie');
-var cookieSign = require('cookie-signature');
 
 function CookieParser(){}
 
 	/**
 	 * Parse function to be handed to restify server.use
-	 * 
+2	 * 
 	 * @param  {object}   req
 	 * @param  {object}   res 
 	 * @param  {Function} next
