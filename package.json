@@ -21,5 +21,7 @@
     "url": "https://github.com/nathschmidt/restify-cookies/issues"
   },
   "homepage": "https://github.com/nathschmidt/restify-cookies",
-  "dependencies": {}
+  "dependencies": {
+    "cookie": "^0.1.2"
+  }
 }
