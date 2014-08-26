@@ -35,11 +35,11 @@ module.exports = {
 
 				var curCookies = res.header(HEADER);
 
-				if(!curCookies instanceof Array){
+				if( !(curCookies instanceof Array) ) {
 					curCookies = [curCookies];
 				}
 				
-				curCookies.push( cookies.serialize(key, val, opts) );
+				curCookies.push( cookie.serialize(key, val, opts) );
 
 				res.header(HEADER, curCookies);
 
