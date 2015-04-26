@@ -4,7 +4,7 @@
   "description": "Adds cookie parsing/setting to restify",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/"
+    "test": "node node_modules/.bin/mocha test"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,10 @@
   "homepage": "https://github.com/nathschmidt/restify-cookies",
   "dependencies": {
     "cookie": "^0.1.2"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^2.2.4",
+    "restify": "^3.0.2"
   }
 }
