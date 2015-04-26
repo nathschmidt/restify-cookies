@@ -51,9 +51,19 @@ describe('Testing Restify Cookies', function() {
 				});
 
 				testutils.request.fireForCookies(PORT, function(err, cookies){
+					if(err){
+						done(err);
+						return;
+					}
 
-					expect(cookies).to.have.keys('hello');
-					expect(cookies['hello']).to.be.eql('world');
+					try{
+						expect(cookies).to.have.keys('hello');
+						expect(cookies['hello']).to.be.eql('world');
+
+					} catch(err){
+						done(err);
+						return;
+					}
 
 					done(err);
 				});
@@ -76,14 +86,24 @@ describe('Testing Restify Cookies', function() {
 				});
 
 				testutils.request.fireForCookies(PORT, function(err, cookies){
+					if(err){
+						done(err);
+						return;
+					}
 
-					expect(cookies).to.have.keys('hello', 'welcome', 'goodbye');
+					try{
 
-					expect(cookies['hello']).to.be.eql('world');
-					expect(cookies['welcome']).to.be.eql('home');
-					expect(cookies['goodbye']).to.be.eql('sunshine');
+						expect(cookies).to.have.keys('hello', 'welcome', 'goodbye');
+						expect(cookies['hello']).to.be.eql('world');
+						expect(cookies['welcome']).to.be.eql('home');
+						expect(cookies['goodbye']).to.be.eql('sunshine');
 
-					done(err);
+					} catch(err){
+						done(err);
+						return;
+					}
+
+					done();
 				});				
 			});
 
@@ -116,11 +136,17 @@ describe('Testing Restify Cookies', function() {
 						return;
 					}
 
-					expect(cookies).to.have.keys('hello', 'welcome', 'goodbye');
+					try {
+						expect(cookies).to.have.keys('hello', 'welcome', 'goodbye');
 
-					expect(cookies['hello']).to.be.eql('world');
-					expect(cookies['welcome']).to.be.eql('home');
-					expect(cookies['goodbye']).to.be.eql('sunshine');
+						expect(cookies['hello']).to.be.eql('world');
+						expect(cookies['welcome']).to.be.eql('home');
+						expect(cookies['goodbye']).to.be.eql('sunshine');
+
+					} catch(err){
+						done(err);
+						return;
+					}
 
 					done();
 				});				
