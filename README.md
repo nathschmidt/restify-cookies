@@ -1,6 +1,8 @@
 Restify-Cookies
 ===============
 
+[![Join the chat at https://gitter.im/nathschmidt/restify-cookies](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nathschmidt/restify-cookies?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Adds cookie reading/setting to restify.
 
 Adds the request.cookie object, which is a hash containing all the key-value cookie pairs sent with this request.  For setting cookies adds the response.addCookie method, which takes a key-value pair and addes it to the cookie header.
