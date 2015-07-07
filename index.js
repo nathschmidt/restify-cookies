@@ -9,7 +9,7 @@ module.exports = {
 	 * @param  {Function} next
 	 * @return {undefined}
 	 */
-	parse: function(req, res, next){
+	parse: function parseCookies (req, res, next){
 		var self = this;
 		var cookieHeader = req.headers.cookie;
 
@@ -28,7 +28,7 @@ module.exports = {
 		 * @param {[type]} opts - Options object can contain path, secure, 
 		 *     expires, domain, http
 		 */
-		res.setCookie = function(key, val, opts){
+		res.setCookie = function setCookie (key, val, opts){
 
 			var HEADER = "Set-Cookie";
 			if(res.header(HEADER)){
