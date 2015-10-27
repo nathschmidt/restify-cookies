@@ -190,6 +190,53 @@ describe('Testing Restify Cookies', function() {
 		});
 	});
 
+	describe('Test clearing cookies', function() {
+
+		describe('Clear a single cookie', function() {
+			it('should remove a cookie in the response', function(done) {
+				var self = this;
+
+				self.testSever.get('/', function(req, res, next){
+					expect(req).to.have.keys('cookies');
+					expect(req.cookies).to.have.keys('hello', 'welcome');
+
+					var cookies = req.cookies;
+					expect(cookies['hello']).to.be.eql('world');
+					expect(cookies['welcome']).to.be.eql('home');
+
+					res.clearCookie('hello');
+
+					res.send('Hello');
+					next();
+				});
+
+				var cookiesToSend = {
+					hello: 'world',
+					'welcome': 'home'
+				};
+
+				testutils.request.fireWithCookies(PORT, cookiesToSend, function(err, cookies){
+					if(err){
+						done(err);
+						return;
+					}
+
+					try{
+						expect(cookies).to.have.keys('hello');
+						expect(cookies['hello']).to.be.eql('');
+
+					} catch(err){
+						done(err);
+						return;
+					}
+
+					done(err);
+				});
+			});
+		});
+
+	});
+
 	afterEach(function(){
 		var self = this;
 

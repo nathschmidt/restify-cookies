@@ -68,8 +68,9 @@ module.exports = {
 			}
 		};
 
-		var req = http.get(opts, function(){
-			fn();
+		var req = http.get(opts, function(resp){
+			var cookies = cookie.parse(resp.headers['set-cookie'].join('; '));
+			fn(null, cookies);
 		});
 
 		req.on('error', fn);

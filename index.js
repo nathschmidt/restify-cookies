@@ -1,5 +1,13 @@
 var cookie = require('cookie');
 
+function merge (dst, src) {
+	for (var i = 1; src = arguments[i], i < arguments.length; ++i)
+		for (var p in src)
+			if (src.hasOwnProperty(p) && !dst.hasOwnProperty(p) &&
+					dst[p] !== src[p]) dst[p] = src[p];
+	return dst;
+}
+
 module.exports = {
 	/**
 	 * Parse function to be handed to restify server.use
@@ -49,6 +57,13 @@ module.exports = {
 
 			}
 		};
+
+		res.clearCookie = function clearCookie (key, opts) {
+			var options = merge({
+				expires: new Date(1)
+			}, opts)
+			res.setCookie(key, '', options)
+		}
 
 		next();
 
