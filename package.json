@@ -1,6 +1,6 @@
 {
   "name": "restify-cookies",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Adds cookie parsing/setting to restify",
   "main": "index.js",
   "scripts": {
