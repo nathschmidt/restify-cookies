@@ -49,11 +49,11 @@ module.exports = {
 				
 				curCookies.push( cookie.serialize(key, val, opts) );
 
-				res.header(HEADER, curCookies);
+				res.setHeader(HEADER, curCookies);
 
 			} else {
 
-				res.header(HEADER, cookie.serialize(key,val, opts));
+				res.setHeader(HEADER, cookie.serialize(key,val, opts));
 
 			}
 		};
