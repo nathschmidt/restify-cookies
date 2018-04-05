@@ -37,25 +37,8 @@ module.exports = {
 		 *     expires, domain, http
 		 */
 		res.setCookie = function setCookie (key, val, opts){
-
 			var HEADER = "Set-Cookie";
-			if(res.header(HEADER)){
-
-				var curCookies = res.header(HEADER);
-
-				if( !(curCookies instanceof Array) ) {
-					curCookies = [curCookies];
-				}
-				
-				curCookies.push( cookie.serialize(key, val, opts) );
-
-				res.header(HEADER, curCookies);
-
-			} else {
-
-				res.header(HEADER, cookie.serialize(key,val, opts));
-
-			}
+			res.header(HEADER, cookie.serialize(key, val, opts));
 		};
 
 		res.clearCookie = function clearCookie (key, opts) {
