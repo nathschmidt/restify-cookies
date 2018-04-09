@@ -16,7 +16,7 @@ describe('Testing Restify Cookies', function() {
 		self.testSever = testutils.server(PORT, done);
 	});
 
-	it('should checks our cookies interface is attached', function(done) {
+	it('should check our cookies interface is attached', function(done) {
 		var self = this;
 
 		self.testSever.get('/', function(req, res){
