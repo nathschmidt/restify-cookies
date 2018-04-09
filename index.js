@@ -17,11 +17,11 @@ module.exports = {
 	 * @param  {Function} next
 	 * @return {undefined}
 	 */
-	parse: function parseCookies (req, res, next){
+	parse: function parseCookies(req, res, next) {
 		var self = this;
 		var cookieHeader = req.headers.cookie;
 
-		if(cookieHeader){
+		if (cookieHeader) {
 			req.cookies = cookie.parse(cookieHeader);
 		} else {
 			req.cookies = {};
@@ -36,15 +36,32 @@ module.exports = {
 		 * @param {[type]} opts - Options object can contain path, secure, 
 		 *     expires, domain, http
 		 */
-		res.setCookie = function setCookie (key, val, opts){
+		res.setCookie = function setCookie(key, val, opts) {
 			var HEADER = "Set-Cookie";
-			res.header(HEADER, cookie.serialize(key, val, opts));
+
+			if (res.header(HEADER)) {
+				var curCookies = res.header(HEADER);
+
+				if (!(curCookies instanceof Array)) {
+					curCookies = [curCookies];
+				}
+
+				curCookies.push(cookie.serialize(key, val, opts));
+
+				res.setHeader(HEADER, curCookies);
+
+			} else {
+
+				res.setHeader(HEADER, cookie.serialize(key, val, opts));
+
+			}
 		};
 
 		res.clearCookie = function clearCookie (key, opts) {
 			var options = merge({
 				expires: new Date(1)
-			}, opts)
+			}, opts);
+
 			res.setCookie(key, '', options)
 		}
 
