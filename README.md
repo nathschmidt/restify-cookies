@@ -64,6 +64,7 @@ The cookie options object is a hash containing these fields:
   - domain    - The domain the cookie will be sent over. Default: origin only.
   - secure    - Set to `true` if the cookie should only be sent for HTTPS requests. Default: `false`.
   - httpOnly  - Set to `true` to disable client-side manipulation of the cookie. Default: `false`.
+  - sameSite. - Specifies the string to set the value for the SameSite attribute. Values: `lax`, `strict` or `none`.
 
 Example:
 ```javascript
